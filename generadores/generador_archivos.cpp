@@ -24,7 +24,7 @@ void generarAscendente(const std::string& nombreArchivo, size_t cantidad) {
     }
 
     archivo.close();
-    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " números)" << std::endl;
+    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " numeros)" << std::endl;
 }
 
 void generarDescendente(const std::string& nombreArchivo, size_t cantidad) {
@@ -43,7 +43,7 @@ void generarDescendente(const std::string& nombreArchivo, size_t cantidad) {
     }
 
     archivo.close();
-    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " números descendentes)" << std::endl;
+    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " numeros descendentes)" << std::endl;
 }
 
 void generarAleatorio(const std::string& nombreArchivo, size_t cantidad, int32_t minValor = 0, int32_t maxValor = 1000000) {
@@ -66,7 +66,7 @@ void generarAleatorio(const std::string& nombreArchivo, size_t cantidad, int32_t
     }
 
     archivo.close();
-    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " números aleatorios)" << std::endl;
+    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " numeros aleatorios)" << std::endl;
 }
 
 void generarParcialmenteOrdenado(const std::string& nombreArchivo, size_t cantidad, double porcentajeOrdenado = 0.7) {
@@ -100,7 +100,7 @@ void generarParcialmenteOrdenado(const std::string& nombreArchivo, size_t cantid
     }
 
     archivo.close();
-    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " números, "
+    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " numeros, "
               << porcentajeOrdenado * 100 << "% ordenados)" << std::endl;
 }
 
@@ -127,7 +127,7 @@ void generarConRepetidos(const std::string& nombreArchivo, size_t cantidad, size
     }
 
     archivo.close();
-    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " números con " << cantidadValoresUnicos << " valores únicos)" << std::endl;
+    std::cout << "Archivo generado: " << rutaArchivo << " (" << cantidad << " numeros con " << cantidadValoresUnicos << " valores unicos)" << std::endl;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -178,7 +178,6 @@ int main() {
     // 5. Muchos repetidos (marcar los valores unicos: ejm solo 10 valores se repetiran en todo el listado)
     generarConRepetidos(nombreRep, cantidadNumeros, 10);
     std::cout << "Archivo generado: " << nombreRep << std::endl;
-
 
     return 0;
 }
