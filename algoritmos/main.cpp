@@ -1,51 +1,88 @@
 #include <iostream>
-#include <fstream>
+#include <string>
 #include <vector>
-#include <cstdint>
 #include <chrono>
+#include <fstream>
+#include <algorithm> //para el std::sort, no necesita carpeta adicional
 #include "/insertion/insertion_sort.h" 
+#include "/merge/merge_sort.h" 
+#include "/quick/quick_sort.h" 
+#include "/heap/heap_sort.h" 
+#include "/nuestro/nuestro_algoritmo.h" 
 
-std::vector<int32_t> leerBinario(const std::string& ruta) {
-    std::ifstream archivo(ruta, std::ios::binary);
-    std::vector<int32_t> datos;
-
+void leerArchivoBinario(const std::string& nombreArchivo, std::vector<int32_t>& datos) {
+    std::ifstream archivo(nombreArchivo, std::ios::binary);
     if (!archivo) {
-        std::cerr << "Error al abrir archivo: " << ruta << std::endl;
-        return datos;
+        std::cerr << "Error: no se pudo abrir el archivo " << nombreArchivo << std::endl;
+        return;
     }
 
     int32_t numero;
-    while (archivo.read(reinterpret_cast<char*>(&numero), sizeof(numero))) {
+    while (archivo.read(reinterpret_cast<char*>(&numero), sizeof(int32_t))) {
         datos.push_back(numero);
     }
-
-    return datos;
+    archivo.close();
 }
 
 int main() {
-    std::string rutaArchivo = "/generadores/datos/ascendente_1MB.bin"; // ajustar el .bin segun el orden y tamaño
-    auto datos = leerBinario(rutaArchivo);
+    std::string nombreArchivo;
+    std::cout << "Nombre del archivo binario (ej: generadores/datos/ascendente_1MB.bin): ";
+    std::cin >> nombreArchivo;
+
+    std::vector<int32_t> datos;
+    leerArchivoBinario(nombreArchivo, datos);
 
     if (datos.empty()) {
-        std::cerr << "No se cargaron datos." << std::endl;
+        std::cerr << "No se pudieron cargar datos desde el archivo." << std::endl;
         return 1;
     }
 
+    std::cout << "\nSeleccione el algoritmo de ordenamiento:\n";
+    std::cout << "1. Insertion Sort\n";
+    std::cout << "2. Merge Sort\n";
+    std::cout << "3. Quick Sort\n";
+    std::cout << "4. Heap Sort\n";
+    std::cout << "5. std::sort (biblioteca)\n";
+    std::cout << "6. Nuestro algoritmo\n"
+    std::cout << "Opcion: ";
+
+    int opcion;
+    std::cin >> opcion;
+
+    auto datosCopia = datos;  // por si se quieren preservar los datos originales
+
     auto inicio = std::chrono::high_resolution_clock::now();
-    insertionSort(datos);
+
+    switch (opcion) { 
+    case 1:
+        insertionSort(datosCopia);
+        break;
+    case 2:
+        mergeSort(datosCopia, 0, datosCopia.size() - 1);
+        break;
+    case 3:
+        quickSort(datosCopia, 0, datosCopia.size() - 1);
+        break;
+    case 4:
+        heapSort(datosCopia);
+        break;
+    case 5:
+        std::sort(datosCopia.begin(), datosCopia.end()); 
+        break;
+    case 6:
+        propioSort(datosCopia);
+        break;
+    default:
+        std::cerr << "Opción no válida." << std::endl;
+        return 1;
+}
+
     auto fin = std::chrono::high_resolution_clock::now();
-
     std::chrono::duration<double> duracion = fin - inicio;
-    std::cout << "Tiempo de ordenamiento: " << duracion.count() << " segundos" << std::endl;
 
-    // mostrar primeros 10 valores para verificar
-    std::cout << "Primeros 10 elementos ordenados:\n";
-    for (size_t i = 0; i < std::min<size_t>(10, datos.size()); ++i) {
-        std::cout << datos[i] << " ";
-    }
-    std::cout << std::endl;
+    std::cout << "Ordenamiento completado en " << duracion.count() << " segundos.\n";
 
     return 0;
 }
 
-//correr con: g++ main.cpp insertion/insertion_sort.cpp -o programa        ->   ./programa
+//correr con: g++ main.cpp insertion/insertion_sort.cpp merge/merge_sort.cpp quick/quick_sort.cpp heap/heap_sort.cpp nuestro/nuestro_algoritmo.cpp  -o programa        ->   ./programa
