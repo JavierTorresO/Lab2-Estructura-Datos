@@ -3,12 +3,12 @@
 #include <vector>
 #include <chrono>
 #include <fstream>
-#include <algorithm> //para el std::sort, no necesita carpeta adicional
-#include "/insertion/insertion_sort.h" 
-#include "/merge/merge_sort.h" 
-#include "/quick/quick_sort.h" 
-#include "/heap/heap_sort.h" 
-#include "/nuestro/nuestro_algoritmo.h" 
+//#include <algorithm> //para el std::sort, no necesita carpeta adicional
+#include "insertion/insertion_sort.h" 
+//#include "merge/merge_sort.h" 
+//#include "quick/quick_sort.h" 
+//#include "heap/heap_sort.h" 
+//#include "nuestro/nuestro_algoritmo.h" 
 
 void leerArchivoBinario(const std::string& nombreArchivo, std::vector<int32_t>& datos) {
     std::ifstream archivo(nombreArchivo, std::ios::binary);
@@ -43,7 +43,7 @@ int main() {
     std::cout << "3. Quick Sort\n";
     std::cout << "4. Heap Sort\n";
     std::cout << "5. std::sort (biblioteca)\n";
-    std::cout << "6. Nuestro algoritmo\n"
+    std::cout << "6. Nuestro algoritmo\n";
     std::cout << "Opcion: ";
 
     int opcion;
@@ -57,7 +57,7 @@ int main() {
     case 1:
         insertionSort(datosCopia);
         break;
-    case 2:
+    /*case 2:
         mergeSort(datosCopia, 0, datosCopia.size() - 1);
         break;
     case 3:
@@ -72,10 +72,11 @@ int main() {
     case 6:
         propioSort(datosCopia);
         break;
+    */    
     default:
         std::cerr << "Opción no válida." << std::endl;
         return 1;
-}
+    }
 
     auto fin = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duracion = fin - inicio;
@@ -85,4 +86,4 @@ int main() {
     return 0;
 }
 
-//correr con: g++ main.cpp insertion/insertion_sort.cpp merge/merge_sort.cpp quick/quick_sort.cpp heap/heap_sort.cpp nuestro/nuestro_algoritmo.cpp  -o programa        ->   ./programa
+//correr con: g++ algoritmos/main.cpp algoritmos/insertion/insertion_sort.cpp algoritmos/merge/merge_sort.cpp algoritmos/quick/quick_sort.cpp algoritmos/heap/heap_sort.cpp algoritmos/nuestro/nuestro_algoritmo.cpp  -o programa        ->   ./programa
