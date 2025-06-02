@@ -25,18 +25,6 @@ void leerArchivoBinario(const std::string& nombreArchivo, std::vector<int32_t>& 
 }
 
 int main() {
-    std::string nombreArchivo;
-    std::cout << "Nombre del archivo binario (ej: generadores/datos/ascendente_1MB.bin): ";
-    std::cin >> nombreArchivo;
-
-    std::vector<int32_t> datos;
-    leerArchivoBinario(nombreArchivo, datos);
-
-    if (datos.empty()) {
-        std::cerr << "No se pudieron cargar datos desde el archivo." << std::endl;
-        return 1;
-    }
-
     std::cout << "\nSeleccione el algoritmo de ordenamiento:\n";
     std::cout << "1. Insertion Sort\n";
     std::cout << "2. Merge Sort\n";
@@ -49,33 +37,49 @@ int main() {
     int opcion;
     std::cin >> opcion;
 
-    auto datosCopia = datos;  // por si se quieren preservar los datos originales
+    if (opcion < 1 || opcion > 6) {
+        std::cerr << "Opción no válida." << std::endl;
+        return 1;
+    }
+
+    std::string nombreArchivo;
+    std::cout << "Nombre del archivo binario (ej: generadores/datos/ascendente_1MB.bin): ";
+    std::cin >> nombreArchivo;
+
+    std::cout << "Cargando datos desde el archivo...\n";
+    std::vector<int32_t> datos;
+    leerArchivoBinario(nombreArchivo, datos);
+
+    if (datos.empty()) {
+        std::cerr << "No se pudieron cargar datos desde el archivo." << std::endl;
+        return 1;
+    }
+
+    auto datosCopia = datos;
 
     auto inicio = std::chrono::high_resolution_clock::now();
 
-    switch (opcion) { 
-    case 1:
-        insertionSort(datosCopia);
-        break;
-    /*case 2:
-        mergeSort(datosCopia, 0, datosCopia.size() - 1);
-        break;
-    case 3:
-        quickSort(datosCopia, 0, datosCopia.size() - 1);
-        break;
-    case 4:
-        heapSort(datosCopia);
-        break;
-    case 5:
-        std::sort(datosCopia.begin(), datosCopia.end()); 
-        break;
-    case 6:
-        propioSort(datosCopia);
-        break;
-    */    
-    default:
-        std::cerr << "Opción no válida." << std::endl;
-        return 1;
+    switch (opcion) {
+        case 1:
+            insertionSort(datosCopia);
+            break;
+        /*
+        case 2:
+            mergeSort(datosCopia, 0, datosCopia.size() - 1);
+            break;
+        case 3:
+            quickSort(datosCopia, 0, datosCopia.size() - 1);
+            break;
+        case 4:
+            heapSort(datosCopia);
+            break;
+        case 5:
+            std::sort(datosCopia.begin(), datosCopia.end());
+            break;
+        case 6:
+            propioSort(datosCopia);
+            break;
+        */
     }
 
     auto fin = std::chrono::high_resolution_clock::now();
