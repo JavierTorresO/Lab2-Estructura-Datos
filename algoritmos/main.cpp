@@ -82,7 +82,7 @@ int main()
         heapSort(datosCopia);
         break;
     case 5:
-        std::sort(datosCopia.begin(), datosCopia.end());
+        sortingBiblioteca(datosCopia);
         break;
     case 6:
         propioSort(datosCopia);
