@@ -97,4 +97,3 @@ int main()
 
     return 0;
 }
-// correr con: g++ algoritmos/main.cpp algoritmos/insertion/insertion_sort.cpp algoritmos/merge/merge_sort.cpp algoritmos/quick/quick_sort.cpp algoritmos/heap/heap_sort.cpp algoritmos/nuestro/nuestro_algoritmo.cpp algoritmos/sorting/sorting_biblioteca.cpp -o programa        ->   ./programa
