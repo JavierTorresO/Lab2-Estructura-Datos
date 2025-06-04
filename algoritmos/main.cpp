@@ -10,6 +10,7 @@
 #include "nuestro/nuestro_algoritmo.h"
 #include "quick/quick_sort.h"
 #include "heap/heap_sort.h"
+#include "sorting/sorting_biblioteca.h"
 
 void leerArchivoBinario(const std::string &nombreArchivo, std::vector<int32_t> &datos)
 {
@@ -96,5 +97,4 @@ int main()
 
     return 0;
 }
-
-// correr con: g++ algoritmos/main.cpp algoritmos/insertion/insertion_sort.cpp algoritmos/merge/merge_sort.cpp algoritmos/quick/quick_sort.cpp algoritmos/heap/heap_sort.cpp algoritmos/nuestro/nuestro_algoritmo.cpp  -o programa        ->   ./programa
+// correr con: g++ algoritmos/main.cpp algoritmos/insertion/insertion_sort.cpp algoritmos/merge/merge_sort.cpp algoritmos/quick/quick_sort.cpp algoritmos/heap/heap_sort.cpp algoritmos/nuestro/nuestro_algoritmo.cpp algoritmos/sorting/sorting_biblioteca.cpp -o programa        ->   ./programa
