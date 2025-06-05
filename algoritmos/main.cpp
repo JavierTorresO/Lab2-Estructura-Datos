@@ -50,7 +50,7 @@ int main()
     }
 
     std::string nombreArchivo;
-    std::cout << "Nombre del archivo binario (ej: generadores/datos/ascendente_1MB.bin): ";
+    std::cout << "Nombre del archivo binario (ej: generadores/datos/ascendente_10MB.bin): ";
     std::cin >> nombreArchivo;
 
     std::cout << "Cargando datos desde el archivo...\n";
