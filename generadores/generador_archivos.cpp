@@ -151,7 +151,7 @@ int main() {
     // 50 MB ≈ 52,428,800 bytes /  = 13107200
     // 100 MB ≈ 104,857,600 bytes /  = 26214400
 
-    size_t cantidadNumeros = 2621440; // 10 MB fue la ultima creación, cambia aquí para probar otros tamaños
+    size_t cantidadNumeros = 26214400; // 100 MB fue la ultima creación, cambia aquí para probar otros tamaños
 
     std::string nombreAsc = generarNombreConTamano("ascendente", cantidadNumeros);
     std::string nombreDesc = generarNombreConTamano("descendente", cantidadNumeros);
